@@ -5,22 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BBCoffeeShop.Data
+namespace BBCoffeeShop.Models.Product
 {
-    public class Product
+    public class ProductDetail
     {
-        [Key]
         public int ProductID { get; set; }
-        [Required]
+        
         public Guid OwnerID { get; set; }
-        [Required]
-        [Display(Name = "Product Name")]
+        
         public string ProductName { get; set; }
-        [Required]
+        
         public decimal Price { get; set; }
-        [Required]
+        [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
-
+        [Display(Name = "Modified")]
         public DateTimeOffset? ModifiedUtc { get; set; }
         public override string ToString() => ProductName;
     }
