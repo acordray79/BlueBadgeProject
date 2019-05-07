@@ -12,6 +12,8 @@ namespace BBCoffeeShop.Data
         [Key]
         public int AdminID { get; set; }
         [Required]
+        public Guid OwnerID { get; set; }
+        [Required]
         [Display(Name = "Admin Name")]
         public string AdminName { get; set; }
 

@@ -10,8 +10,6 @@ namespace BBCoffeeShop.Models.Customer
     {
         public int CustomerID { get; set; }
 
-        public Guid OwnerID { get; set; }
-
         public string CustomerName { get; set; }
         
         public string CustomerEmail { get; set; }
