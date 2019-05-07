@@ -15,14 +15,13 @@ namespace BBCoffeeShop.Data
         public int CustomerID { get; set; }
         [Required]
         public int ProductID { get; set; }
-        [Required]
-        public bool Purchase { get; set; }
+
         public DateTimeOffset CreatedUtc { get; set; }
 
         public DateTimeOffset? ModifiedUtc { get; set; }
 
-        public virtual string CustomerName { get; set; }
-        public virtual string ProductName { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual Product Product { get; set; }
 
     }
 }

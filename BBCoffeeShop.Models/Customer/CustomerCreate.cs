@@ -15,7 +15,5 @@ namespace BBCoffeeShop.Models.Customer
         public string CustomerEmail { get; set; }
         
         public string CreditCard { get; set; }
-
-        public override string ToString() => CustomerName;
     }
 }

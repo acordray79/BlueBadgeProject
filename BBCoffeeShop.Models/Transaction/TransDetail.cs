@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BBCoffeeShop.Models.Customer
+namespace BBCoffeeShop.Models.Transaction
 {
-    public class CustomerListItem
+    public class TransDetail
     {
+        public int TransactionID { get; set; }
+        
         public int CustomerID { get; set; }
         
-        public string CustomerName { get; set; }
-
-        public string CustomerEmail { get; set; }
-
-        public string CreditCard { get; set; }
-
+        public int ProductID { get; set; }
+        
         public DateTimeOffset CreatedUtc { get; set; }
+
+        public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }

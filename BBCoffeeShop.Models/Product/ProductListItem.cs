@@ -14,6 +14,5 @@ namespace BBCoffeeShop.Models.Product
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public DateTimeOffset CreatedUtc { get; set; }
-        public override string ToString() => ProductName;
     }
 }

@@ -10,6 +10,5 @@ namespace BBCoffeeShop.Models.Admin
     {
         public int AdminID { get; set; }
         public string AdminName { get; set; }
-        public override string ToString() => AdminName;
     }
 }

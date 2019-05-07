@@ -20,6 +20,5 @@ namespace BBCoffeeShop.Models.Product
         public DateTimeOffset CreatedUtc { get; set; }
         [Display(Name = "Modified")]
         public DateTimeOffset? ModifiedUtc { get; set; }
-        public override string ToString() => ProductName;
     }
 }

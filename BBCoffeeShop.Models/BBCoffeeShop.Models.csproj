@@ -67,6 +67,10 @@
     <Compile Include="Product\ProductListItem.cs" />
     <Compile Include="Product\ProductUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transaction\TransCreate.cs" />
+    <Compile Include="Transaction\TransDetail.cs" />
+    <Compile Include="Transaction\TransListItem.cs" />
+    <Compile Include="Transaction\TransUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

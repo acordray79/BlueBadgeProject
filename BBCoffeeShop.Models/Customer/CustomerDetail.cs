@@ -19,7 +19,5 @@ namespace BBCoffeeShop.Models.Customer
         public DateTimeOffset CreatedUtc { get; set; }
 
         public DateTimeOffset? ModifiedUtc { get; set; }
-
-        public override string ToString() => CustomerName;
     }
 }
