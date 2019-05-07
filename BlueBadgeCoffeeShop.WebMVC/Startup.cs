@@ -40,7 +40,7 @@ namespace BlueBadgeCoffeeShop.WebMVC
                 user.UserName = "panda";
                 user.Email = "panda@panda.com";
 
-                string userPWD = "panda";
+                string userPWD = "panda!";
 
                 var chkUser = userManager.Create(user, userPWD);
 

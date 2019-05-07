@@ -60,8 +60,7 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
-                                            .ToList(), "Name", "Name");
+            ViewBag.ReturnUrl = returnUrl;
 
             return View();
         }
@@ -78,9 +77,9 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            // This doesn't count login failures towards account lockout   
+            // To enable password failures to trigger account lockout, change to shouldLockout: true   
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -96,20 +95,18 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
             }
         }
 
-        //
-        // GET: /Account/VerifyCode
+        //   
+        // GET: /Account/VerifyCode   
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
-            // Require that the user has already logged in via username/password or external login
+            // Require that the user has already logged in via username/password or external login   
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
                 return View("Error");
             }
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
-
-        //
         // POST: /Account/VerifyCode
         [HttpPost]
         [AllowAnonymous]
@@ -141,6 +138,14 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
 
         //
         // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                            .ToList(), "Name", "Name");
+            return View();
+        }
+        // POST: Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
