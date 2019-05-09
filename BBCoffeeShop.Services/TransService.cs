@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BBCoffeeShop.Services
 {
-    public class TransServices
+    public class TransService
     {
         public bool CreateTrans(TransCreate model)
         {
@@ -16,7 +16,8 @@ namespace BBCoffeeShop.Services
                 new Transaction()
                 {
                     CustomerID = model.CustomerID,
-                    ProductID = model.ProductID
+                    ProductID = model.ProductID,
+                    CreatedUtc = DateTimeOffset.Now
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -45,20 +46,20 @@ namespace BBCoffeeShop.Services
                 return query.ToArray();
             }
         }
-        public TransDetail GetTransByID(int productID)
+        public TransDetail GetTransByID(int transID)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Transactions
-                        .Single(e => e.ProductID == productID);
+                        .Single(e => e.TransactionID == transID);
                 return
                     new TransDetail
                     {
                         TransactionID = entity.TransactionID,
-                        CustomerID = entity.CustomerID,
-                        ProductID = entity.ProductID,
+                        CustomerName = entity.Customer.CustomerName,
+                        ProductName = entity.Product.ProductName,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
                     };
@@ -71,7 +72,7 @@ namespace BBCoffeeShop.Services
                 var entity =
                     ctx
                         .Transactions
-                        .Single(e => e.TransactionID == model.ProductID);
+                        .Single(e => e.TransactionID == model.TransactionID);
                 entity.CustomerID = model.CustomerID;
                 entity.ProductID = model.ProductID;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;

@@ -1,5 +1,6 @@
 ﻿using BBCoffeeShop.Models.Transaction;
 using BBCoffeeShop.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,15 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
         // GET: Transaction/Create
         public ActionResult Create()
         {
+            ProductService prodSvc;
+            CustomerService custSvc;
+            ViewInfo(out prodSvc, out custSvc);
+            ViewBag.CustomerID = new SelectList(custSvc.GetCustomer(), "CustomerID", "CustomerName");
+            ViewBag.ProductID = new SelectList(prodSvc.GetProducts(), "ProductID", "ProductName");
             return View();
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TransCreate model)
@@ -52,9 +60,14 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
                 new TransUpdate
                 {
                     TransactionID = detail.TransactionID,
-                    CustomerID = detail.CustomerID,
-                    ProductID = detail.ProductID
+                    CustomerName = detail.CustomerName,
+                    ProductName = detail.ProductName
                 };
+            ProductService prodSvc;
+            CustomerService custSvc;
+            ViewInfo(out prodSvc, out custSvc);
+            ViewBag.CustomerID = new SelectList(custSvc.GetCustomer(), "CustomerID", "CustomerName");
+            ViewBag.ProductID = new SelectList(prodSvc.GetProducts(), "ProductID", "ProductName");
             return View(model);
         }
         [HttpPost]
@@ -91,6 +104,11 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
             _service.DeleteTrans(id);
             TempData["SaveResult"] = "Your transaction was deleted";
             return RedirectToAction("Index");
+        }
+        private void ViewInfo(out ProductService prodSvc, out CustomerService custSvc)
+        {
+            prodSvc = new ProductService(Guid.Parse(User.Identity.GetUserId()));
+            custSvc = new CustomerService(Guid.Parse(User.Identity.GetUserId()));
         }
     }
 }

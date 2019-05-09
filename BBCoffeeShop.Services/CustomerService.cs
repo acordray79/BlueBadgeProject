@@ -41,7 +41,6 @@ namespace BBCoffeeShop.Services
                 var query =
                     ctx
                         .Customers
-                        .Where(e => e.OwnerID == _userID)
                         .Select(
                             e =>
                                 new CustomerListItem
@@ -64,7 +63,7 @@ namespace BBCoffeeShop.Services
                 var entity =
                     ctx
                         .Customers
-                        .Single(e => e.CustomerID == customerID && e.OwnerID == _userID);
+                        .Single(e => e.CustomerID == customerID);
                 return
                     new CustomerDetail
                     {

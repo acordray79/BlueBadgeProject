@@ -10,6 +10,5 @@ namespace BBCoffeeShop.Models.Transaction
     {
         public int CustomerID { get; set; }
         public int ProductID { get; set; }
-        public DateTimeOffset CreatedUtc { get; set; }
     }
 }

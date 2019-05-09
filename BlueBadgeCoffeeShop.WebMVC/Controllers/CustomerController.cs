@@ -12,6 +12,7 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
     public class CustomerController : Controller
     {
         // GET: Customer
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var service = CreateCustomerService();
@@ -84,7 +85,7 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
             ModelState.AddModelError("", "Your customer could not be updated.");
             return View(model);
         }
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Admin")]
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {

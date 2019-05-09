@@ -23,29 +23,36 @@
         <th>
             @Html.DisplayNameFor(model => model.CreatedUtc)
         </th>
-        <th></th>
-    </tr>
+        @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+        {
+            <th></th>
+        }
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>S
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreditCard)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedUtc)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.CustomerID  }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CustomerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedUtc)
+            </td>
+                @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                {
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID })
+            </td>
+                }
+        </tr>
+    }
 
 </table>

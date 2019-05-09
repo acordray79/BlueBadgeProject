@@ -10,9 +10,9 @@ namespace BBCoffeeShop.Models.Transaction
     {
         public int TransactionID { get; set; }
         
-        public int CustomerID { get; set; }
+        public string CustomerName { get; set; }
         
-        public int ProductID { get; set; }
+        public string ProductName { get; set; }
         
         public DateTimeOffset CreatedUtc { get; set; }
 
