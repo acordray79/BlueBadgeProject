@@ -10,7 +10,17 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (!User.IsInRole("Admin") && !User.IsInRole("Customer"))
+            {
+                return RedirectToAction("Create", "Customer");
+            }
+            else if (!User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Product");
+            }
+            else
+                return RedirectToAction("Index", "Admin");
+
         }
 
         public ActionResult About()

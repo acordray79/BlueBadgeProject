@@ -37,7 +37,7 @@ namespace BlueBadgeCoffeeShop.WebMVC.Controllers
             if (service.CreateCustomer(model))
             {
                 TempData["SaveResult"] = "Your note was created.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Product");
             };
 
             ModelState.AddModelError("", "Note could not be created.");
